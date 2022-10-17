@@ -1,3 +1,4 @@
+const { assert } = require('chai');
 const { NotImplementedError } = require('../extensions/index.js');
 
 /**
@@ -12,11 +13,23 @@ const { NotImplementedError } = require('../extensions/index.js');
  * For 91, the result should be 1 (9 + 1 = 10, 1 + 0 = 1)
  *
  */
-function getSumOfDigits(/* n */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function getSumOfDigits(n) {
+  let tempNumber = n;
+  do {
+    tempNumber = tempNumber
+      .toString()
+      .split('')
+      .reduce((acc, value) => {
+        acc += Number(value);
+        return acc;
+      }, 0);
+  } while (tempNumber.toString().length > 1);
+
+  return tempNumber;
 }
 
 module.exports = {
-  getSumOfDigits
+  getSumOfDigits,
 };
+
+getSumOfDigits(123);
