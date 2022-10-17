@@ -16,13 +16,22 @@ function getCommonCharacterCount(s1, s2) {
     return false;
   }
 
-  for (let i = 0; i < s1.length; i += 1) {
-    for (let j = 0; i < s2.length; i += 1) {
-      
+  [...s1List] = s1;
+  [...s2List] = s2;
+
+  let count = 0;
+
+  for (let i = 0, j = 0; i < s1List.length; i += 1) {
+    if (s2List.includes(s1List[i])) {
+      count += 1;
+      s2List.splice(s2List.indexOf(s1List[i]), 1);
     }
   }
+  return count;
 }
 
 module.exports = {
   getCommonCharacterCount,
 };
+
+console.log(getCommonCharacterCount('aabcc', 'adcaa'));
